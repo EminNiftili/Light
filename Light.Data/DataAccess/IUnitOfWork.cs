@@ -1,5 +1,5 @@
-﻿using Light.Data.Repositories;
-using Light.Data.Repositories.Implementation;
+﻿using Light.Data.Entity;
+using Light.Data.Repositories;
 
 namespace Light.Data.DataAccess
 {
@@ -8,13 +8,7 @@ namespace Light.Data.DataAccess
         void Commit();
 
         IStoredProcedureRepository StoredProcedure { get; }
-        IBonusLogRepository BonusLog { get; }
-        IBranchRepository Branch { get; }
-        ICashBoxRepository CashBox { get; }
-        ICustomerRepository Customer { get; }
-        IInvoiceDetailRepository InvoiceDetail { get; }
-        IInvoiceRepository Invoice { get; }
-        IProductBranchRepository ProductBranch { get; } 
-        IProductRepository Product { get; }
+
+        IRepository<TEntity> GetRepository<TEntity>() where TEntity : BaseEntity;
     }
 }

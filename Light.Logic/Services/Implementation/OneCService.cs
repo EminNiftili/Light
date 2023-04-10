@@ -104,16 +104,16 @@ namespace Light.Logic.Services.Implementation
                 var customers = _mapper.Map<List<Customer>>(oneC.Customers);
                 var productBranches = _mapper.Map<List<ProductBranch>>(oneC.ProductBranches);
 
-                _unitOfWork.Product.AddRange(products);
+                _unitOfWork.GetRepository<Product>().AddRange(products);
                 _unitOfWork.Commit();
 
-                _unitOfWork.Branch.AddRange(branches);
+                _unitOfWork.GetRepository<Branch>().AddRange(branches);
                 _unitOfWork.Commit();
 
-                _unitOfWork.Customer.AddRange(customers);
+                _unitOfWork.GetRepository<Customer>().AddRange(customers);
                 _unitOfWork.Commit();
 
-                _unitOfWork.ProductBranch.AddRange(productBranches);
+                _unitOfWork.GetRepository<ProductBranch>().AddRange(productBranches);
                 _unitOfWork.Commit();
             }
 

@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 
 namespace Light.Data.DataAccess.Ef.EfRepositories
 {
-    public abstract class EfRepository<TEntity> : IRepository<TEntity> where TEntity : BaseEntity
+    public class EfRepository<TEntity> : IRepository<TEntity> where TEntity : BaseEntity
     {
         protected DbContext dbContext;
         protected DbSet<TEntity > entities;
@@ -30,17 +30,6 @@ namespace Light.Data.DataAccess.Ef.EfRepositories
             return entities.FirstOrDefault(x => x.Id == id);
         }
 
-        public TEntity GetEntity(object value, string columnName)
-        {
-            throw new NotImplementedException();
-            //return entities.FirstOrDefault(x =>
-            //{
-            //    var prop = x.GetType().GetProperties().FirstOrDefault(p => p.Name == columnName);
-            //    return prop != null && prop.GetValue(x) == value;
-            //}
-            //);
-        }
-
         public List<TEntity> Gets()
         {
             return Gets(x => true);
@@ -49,6 +38,11 @@ namespace Light.Data.DataAccess.Ef.EfRepositories
         public List<TEntity> Gets(Expression<Func<TEntity, bool>> expression)
         {
             return entities.Where(expression).ToList();
+        }
+
+        public IQueryable<TEntity> Queryable()
+        {
+            return entities.AsQueryable();
         }
 
         public void Update(TEntity entity)
