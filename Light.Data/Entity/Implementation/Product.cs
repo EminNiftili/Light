@@ -6,5 +6,7 @@
         public string Name { get; set; }
         public string Barcode { get; set; }
         public decimal VAT { get; set; }
+
+        public ICollection<ProductBranch> ProductBranches { get; set; }
     }
 }

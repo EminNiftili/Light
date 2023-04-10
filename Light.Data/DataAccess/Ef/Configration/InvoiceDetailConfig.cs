@@ -10,6 +10,16 @@ namespace Light.Data.DataAccess.Ef.Configration
         {
             base.Configure(builder);
             builder.ToTable("InvoiceDetail");
+
+            builder.HasOne(x => x.Invoice)
+                .WithMany(x => x.InvoiceDetails)
+                .HasPrincipalKey(x => x.Id)
+                .HasForeignKey(x => x.InvoiceId);
+
+            builder.HasOne(x => x.ProductBranch)
+                .WithOne()
+                .HasPrincipalKey<ProductBranch>(x => x.Id)
+                .HasForeignKey<InvoiceDetail>(x => x.ProductBranchId);
         }
     }
 }

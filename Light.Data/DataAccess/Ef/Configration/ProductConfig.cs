@@ -10,6 +10,11 @@ namespace Light.Data.DataAccess.Ef.Configration
         {
             base.Configure(builder);
             builder.ToTable("Product");
+
+            builder.HasMany(x => x.ProductBranches)
+                .WithOne(x => x.Product)
+                .HasPrincipalKey(x => x.OneCId)
+                .HasForeignKey(x => x.ProductOneCId);
         }
     }
 }

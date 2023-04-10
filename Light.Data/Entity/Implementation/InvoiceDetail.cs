@@ -6,5 +6,8 @@
         public float Amount { get; set; }
         public int ProductBranchId { get; set; }
         public int InvoiceId { get; set; }
+
+        public Invoice Invoice { get; set; } 
+        public ProductBranch ProductBranch { get; set; }
     }
 }

@@ -10,6 +10,11 @@ namespace Light.Data.DataAccess.Ef.Configration
         {
             base.Configure(builder);
             builder.ToTable("Customer");
+
+            builder.HasMany(x => x.Invoices)
+                .WithOne(x => x.Customer)
+                .HasPrincipalKey(x => x.Id)
+                .HasForeignKey(x => x.CustomerId);
         }
     }
 }

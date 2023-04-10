@@ -6,5 +6,7 @@
         public string Surname { get; set; }
         public string Barcode { get; set; }
         public decimal Bonus { get; set; }
+
+        public ICollection<Invoice> Invoices { get; set; }
     }
 }
